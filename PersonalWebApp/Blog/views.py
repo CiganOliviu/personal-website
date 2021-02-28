@@ -20,7 +20,10 @@ def blog_posts_search_view(request):
 
     query = request.GET.get('q')
     
-    results = query and get_data_from_blog_database(query) or redirect('/blog')
+    if query:
+        results = get_data_from_blog_database(query)
+    else:
+        redirect('/blog')
 
     context = {
 
